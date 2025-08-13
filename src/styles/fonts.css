@@ -8,13 +8,13 @@
 @font-face {
   font-family: 'SF Pro Text';
   src: url('@/assets/fonts/SF-Pro-Text-Medium.otf') format('opentype');
-  font-weight: 510;
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'SF Pro Text';
   src: url('@/assets/fonts/SF-Pro-Text-Semibold.otf') format('opentype');
-  font-weight: 590;
+  font-weight: 600;
   font-style: normal;
 }

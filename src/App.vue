@@ -1,15 +1,23 @@
 <script setup>
-import MinimizedOverlay from './components/MinimizedOverlay.vue'
-import LatestMatch from './components/LatestMatch.vue'
-import TodayStats from './components/TodayStats.vue'
 import ExpandedOverlay from './components/ExpandedOverlay.vue'
+import LatestMatch from './components/LatestMatch.vue'
+import MinimizedOverlay from './components/MinimizedOverlay.vue'
+import TodayStats from './components/TodayStats.vue'
 </script>
 
 <template>
-  <MinimizedOverlay />
-  <LatestMatch />
-  <TodayStats />
-  <ExpandedOverlay />
+  <div class="preview">
+    <MinimizedOverlay />
+    <LatestMatch />
+    <TodayStats />
+    <ExpandedOverlay />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .preview {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+</style>
