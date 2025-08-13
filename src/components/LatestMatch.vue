@@ -3,7 +3,7 @@
     <span class="latest__text">Latest</span>
     <div class="latest-match">
       <div class="latest-match-opponent">
-        <img src="" alt="" class="latest-match-opponent__icon" />
+        <img src="/src/assets/temp/avatar.png" alt="" class="latest-match-opponent__icon" />
         <div class="latest-match-opponent-info">
           <span class="latest__text">123 elo</span>
           <span class="latest-match-opponent-info__nickname">ABCD</span>
@@ -18,7 +18,7 @@
 .latest {
   display: flex;
   width: 13.6rem;
-  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.625rem;

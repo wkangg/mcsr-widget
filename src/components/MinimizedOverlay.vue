@@ -19,7 +19,8 @@
 <style scoped>
 .minimized {
   display: inline-flex;
-  padding: 0.5rem 2rem 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+  width: 14.125rem;
   align-items: center;
   gap: 1rem;
   border-radius: 2rem;
@@ -27,8 +28,9 @@
 }
 .miminized-info {
   display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
   align-items: center;
-  gap: 0.5rem;
 }
 .miminized-info-rank {
   display: flex;

@@ -1,5 +1,5 @@
 <script setup>
-import TodayStats from './TodayStats.vue'
+import TodayStats from './TodayStats.vue';
 </script>
 
 <template>
@@ -27,8 +27,8 @@ import TodayStats from './TodayStats.vue'
 <style scoped>
 .expanded {
   display: flex;
-  width: 15.1rem;
-  padding: 1rem 1.5rem 0.75rem 1.5rem;
+  width: 18.125rem;
+  padding: 1rem 1.5rem;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
