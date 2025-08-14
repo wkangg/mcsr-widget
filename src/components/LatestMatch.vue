@@ -17,7 +17,7 @@
 <style scoped>
 .latest {
   display: flex;
-  width: 13.6rem;
+  align-self: stretch;
   padding: 0.5rem 0.75rem;
   flex-direction: column;
   align-items: flex-start;

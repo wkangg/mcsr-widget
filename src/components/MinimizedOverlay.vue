@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+defineProps({
+  nickname: String,
+  elo: Number,
+  rank: String,
+  icon: Number,
+})
+</script>
 
 <template>
   <div class="minimized">
@@ -18,13 +25,10 @@
 
 <style scoped>
 .minimized {
-  display: inline-flex;
-  padding: 0.5rem 1rem;
-  width: 14.125rem;
+  display: flex;
+  width: 100%;
   align-items: center;
   gap: 1rem;
-  border-radius: 2rem;
-  background: #000;
 }
 .miminized-info {
   display: flex;

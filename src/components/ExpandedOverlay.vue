@@ -1,39 +1,79 @@
 <script setup>
-import TodayStats from './TodayStats.vue';
+import { useConfigStore } from '@/stores/config'
+import { delay } from 'motion-v'
+import { onUnmounted } from 'vue'
+import LatestMatch from './LatestMatch.vue'
+import TodayStats from './TodayStats.vue'
+import WinrateBadge from './WinrateBadge.vue'
+
+const { nickname, elo, rank, rankIcon, badge, rate, accent } = defineProps({
+  nickname: String,
+  elo: Number,
+  rank: String,
+  rankIcon: String,
+  badge: Number,
+  rate: Number,
+  accent: String,
+})
+
+const configStore = useConfigStore()
+
+const toggleLatest = () => {
+  configStore.isLatest = !configStore.isLatest
+  delay(() => {
+    configStore.isLatest = !configStore.isLatest
+  }, configStore.rate)
+}
+
+const intervalID = setInterval(toggleLatest, (configStore.rate * 1000) / 2)
+
+onUnmounted(() => {
+  clearInterval(intervalID)
+})
 </script>
 
 <template>
   <div class="expanded">
     <div class="expanded-info">
       <div class="expanded-info-stats">
-        <span class="expanded-info-stats__text">1207 elo</span>
+        <span class="expanded-info-stats__text">{{ elo }} elo</span>
         <div class="expanded-info-stats-rank">
-          <span class="expanded-info-stats-rank__text">Emerald 1</span>
+          <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            src="/src/assets/icons/emerald.png"
+            :src="`/src/assets/icons/${rankIcon}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />
         </div>
       </div>
 
-      <img src="/src/assets/icons/ranked.png" alt="ranked icon" class="expanded-info__icon" />
+      <img
+        v-if="badge === 1"
+        src="/src/assets/icons/ranked.png"
+        alt="ranked icon"
+        class="expanded-info__icon"
+      />
+      <WinrateBadge v-if="badge === 2" :percentage="52" :accent="accent" />
+      <img
+        v-if="badge === 3"
+        :src="`https://mineskin.eu/helm/${nickname}/100.png`"
+        alt="player head"
+        class="expanded-info__head"
+      />
     </div>
 
-    <TodayStats />
+    <LatestMatch v-if="!configStore.isLatest" />
+    <TodayStats v-else />
   </div>
 </template>
 
 <style scoped>
 .expanded {
   display: flex;
-  width: 18.125rem;
-  padding: 1rem 1.5rem;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  border-radius: 2rem;
-  background: #000;
 }
 .expanded-info {
   display: flex;
@@ -74,5 +114,10 @@ import TodayStats from './TodayStats.vue';
 .expanded-info__icon {
   width: 2rem;
   height: 2rem;
+}
+.expanded-info__head {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
 }
 </style>
