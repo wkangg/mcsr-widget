@@ -1,3 +1,14 @@
+<script setup>
+import AvgIcon from '@/assets/icons/avg.svg'
+import EloIcon from '@/assets/icons/elo.svg'
+import LosesIcon from '@/assets/icons/loses.svg'
+import WinsIcon from '@/assets/icons/wins.svg'
+
+const { accent } = defineProps({
+  accent: String,
+})
+</script>
+
 <template>
   <div class="today">
     <span class="today__text">Today</span>
@@ -6,11 +17,7 @@
         <!-- Wins badge -->
         <div class="today-stats-values-badge">
           <div class="today-stats-values-badge-con">
-            <img
-              src="/src/assets/icons/wins.svg"
-              alt="wins icon"
-              class="today-stats-values-badge__icon"
-            />
+            <WinsIcon :style="`color: ${accent}`" />
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Wins</span>
@@ -21,11 +28,7 @@
         <!-- Loses badge -->
         <div class="today-stats-values-badge">
           <div class="today-stats-values-badge-con">
-            <img
-              src="/src/assets/icons/loses.svg"
-              alt="loses icon"
-              class="today-stats-values-badge__icon"
-            />
+            <LosesIcon :style="`color: ${accent}`" />
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Loses</span>
@@ -37,11 +40,7 @@
         <!-- Elo badge -->
         <div class="today-stats-values-badge">
           <div class="today-stats-values-badge-con">
-            <img
-              src="/src/assets/icons/elo.svg"
-              alt="elo icon"
-              class="today-stats-values-badge__icon"
-            />
+            <EloIcon :style="`color: ${accent}`" />
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Elo</span>
@@ -52,11 +51,7 @@
         <!-- Avg badge -->
         <div class="today-stats-values-badge">
           <div class="today-stats-values-badge-con">
-            <img
-              src="/src/assets/icons/avg.svg"
-              alt="avg icon"
-              class="today-stats-values-badge__icon"
-            />
+            <AvgIcon :style="`color: ${accent}`" />
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Avg</span>
@@ -107,14 +102,9 @@
 .today-stats-values-badge-con {
   display: flex;
   width: 2rem;
-  padding: 0 0.25rem;
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
-}
-.today-stats-values-badge__icon {
-  width: 2rem;
-  height: 2rem;
 }
 .today-stats-values-badge-info {
   display: flex;

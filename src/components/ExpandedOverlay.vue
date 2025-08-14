@@ -6,13 +6,12 @@ import LatestMatch from './LatestMatch.vue'
 import TodayStats from './TodayStats.vue'
 import WinrateBadge from './WinrateBadge.vue'
 
-const { nickname, elo, rank, rankIcon, badge, rate, accent } = defineProps({
+const { nickname, elo, rank, rankIcon, badge, accent } = defineProps({
   nickname: String,
   elo: Number,
   rank: String,
   rankIcon: String,
   badge: Number,
-  rate: Number,
   accent: String,
 })
 
@@ -25,7 +24,7 @@ const toggleLatest = () => {
   }, configStore.rate)
 }
 
-const intervalID = setInterval(toggleLatest, (configStore.rate * 1000) / 2)
+const intervalID = setInterval(toggleLatest, (configStore.rate * 1000) / 2 + 20)
 
 onUnmounted(() => {
   clearInterval(intervalID)
@@ -63,7 +62,7 @@ onUnmounted(() => {
     </div>
 
     <LatestMatch v-if="!configStore.isLatest" />
-    <TodayStats v-else />
+    <TodayStats v-else :accent="accent" />
   </div>
 </template>
 

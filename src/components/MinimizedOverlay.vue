@@ -1,10 +1,18 @@
 <script setup>
-defineProps({
-  nickname: String,
+const { elo, rankIcon, eloChange } = defineProps({
   elo: Number,
-  rank: String,
-  icon: Number,
+  rankIcon: String,
+  eloChange: Number,
 })
+
+const eloChangeFormatter = (eloChange) => {
+  if (eloChange > 0) {
+    return `+${eloChange}`
+  } else if (eloChange < 0) {
+    return eloChange.toString()
+  }
+  return '+0'
+}
 </script>
 
 <template>
@@ -12,13 +20,13 @@ defineProps({
     <div class="miminized-info">
       <div class="miminized-info-rank">
         <img
-          src="/src/assets/icons/diamond.png"
+          :src="`/src/assets/icons/${rankIcon}.png`"
           alt="rank icon"
           class="miminized-info-rank__icon"
         />
-        <span class="miminized-info-rank__text">Emerald 1</span>
+        <span class="miminized-info-rank__text">{{ elo }} elo</span>
       </div>
-      <span class="miminized-info__text">+0</span>
+      <span class="miminized-info__text">{{ eloChangeFormatter(eloChange) }}</span>
     </div>
   </div>
 </template>
