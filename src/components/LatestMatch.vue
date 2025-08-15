@@ -6,6 +6,9 @@ const { elo, nickname, result } = defineProps({
   nickname: String,
   result: Number,
 })
+
+const isPositive = result > 0
+const isNegative = result < 0
 </script>
 
 <template>
@@ -23,7 +26,14 @@ const { elo, nickname, result } = defineProps({
           <span class="latest-match-opponent-info__nickname">{{ nickname }}</span>
         </div>
       </div>
-      <span class="latest-match-opponent__result">{{ eloChangeFormatter(result) }}</span>
+      <span
+        class="latest-match-opponent__result"
+        :class="{
+          'latest-match-opponent__result--positive': isPositive,
+          'latest-match-opponent__result--negative': isNegative,
+        }"
+        >{{ eloChangeFormatter(result) }}</span
+      >
     </div>
   </div>
 </template>
@@ -83,5 +93,11 @@ const { elo, nickname, result } = defineProps({
   font-weight: 590;
   line-height: 0.65538rem;
   letter-spacing: -0.01488rem;
+}
+.latest-match-opponent__result--positive {
+  color: #37c058;
+}
+.latest-match-opponent__result--negative {
+  color: #fa3532;
 }
 </style>

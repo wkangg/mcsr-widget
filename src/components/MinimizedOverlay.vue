@@ -6,6 +6,9 @@ const { elo, rankIcon, eloChange } = defineProps({
   rankIcon: String,
   eloChange: Number,
 })
+
+const isPositive = eloChange > 0
+const isNegative = eloChange < 0
 </script>
 
 <template>
@@ -19,7 +22,14 @@ const { elo, rankIcon, eloChange } = defineProps({
         />
         <span class="miminized-info-rank__text">{{ elo }} elo</span>
       </div>
-      <span class="miminized-info__text">{{ eloChangeFormatter(eloChange) }}</span>
+      <span
+        class="miminized-info__text"
+        :class="{
+          'miminized-info__text--positive': isPositive,
+          'miminized-info__text--negative': isNegative,
+        }"
+        >{{ eloChangeFormatter(eloChange) }}</span
+      >
     </div>
   </div>
 </template>
