@@ -3,9 +3,14 @@ import AvgIcon from '@/assets/icons/avg.svg'
 import EloIcon from '@/assets/icons/elo.svg'
 import LosesIcon from '@/assets/icons/loses.svg'
 import WinsIcon from '@/assets/icons/wins.svg'
+import { eloChangeFormatter } from '@/lib/eloChangeForametter'
 
-const { accent } = defineProps({
+const { accent, wins, loses, elo, avg } = defineProps({
   accent: String,
+  wins: Number,
+  loses: Number,
+  elo: Number,
+  avg: String,
 })
 </script>
 
@@ -21,7 +26,7 @@ const { accent } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Wins</span>
-            <span class="today-stats-values-badge__text">0</span>
+            <span class="today-stats-values-badge__text">{{ wins }}</span>
           </div>
         </div>
 
@@ -32,7 +37,7 @@ const { accent } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Loses</span>
-            <span class="today-stats-values-badge__text">0</span>
+            <span class="today-stats-values-badge__text">{{ loses }}</span>
           </div>
         </div>
       </div>
@@ -44,7 +49,7 @@ const { accent } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Elo</span>
-            <span class="today-stats-values-badge__text">0</span>
+            <span class="today-stats-values-badge__text">{{ eloChangeFormatter(elo) }}</span>
           </div>
         </div>
 
@@ -55,7 +60,7 @@ const { accent } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Avg</span>
-            <span class="today-stats-values-badge__text">0</span>
+            <span class="today-stats-values-badge__text">{{ avg }}</span>
           </div>
         </div>
       </div>

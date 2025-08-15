@@ -1,18 +1,11 @@
 <script setup>
+import { eloChangeFormatter } from '@/lib/eloChangeForametter'
+
 const { elo, rankIcon, eloChange } = defineProps({
   elo: Number,
   rankIcon: String,
   eloChange: Number,
 })
-
-const eloChangeFormatter = (eloChange) => {
-  if (eloChange > 0) {
-    return `+${eloChange}`
-  } else if (eloChange < 0) {
-    return eloChange.toString()
-  }
-  return '+0'
-}
 </script>
 
 <template>

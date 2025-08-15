@@ -2,10 +2,12 @@
 import ExpandedOverlay from '@/components/ExpandedOverlay.vue'
 import MinimizedOverlay from '@/components/MinimizedOverlay.vue'
 import { useConfigStore } from '@/stores/config'
+import { useStatsStore } from '@/stores/stats'
 import { delay, motion, useAnimate } from 'motion-v'
-import { onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 const configStore = useConfigStore()
+const statsStore = useStatsStore()
 const [scope, animate] = useAnimate()
 
 const toggleOverlay = () => {
@@ -45,32 +47,11 @@ const variants = {
   },
 }
 
-const eloToRank = (elo) => {
-  if (elo < 400) return ('Coal 1', 'coal')
-  if (elo < 500) return ('Coal 2', 'coal')
-  if (elo < 600) return ('Coal 3', 'coal')
-
-  if (elo < 700) return ('Iron 1', 'iron')
-  if (elo < 800) return ('Iron 2', 'iron')
-  if (elo < 900) return ('Iron 3', 'iron')
-
-  if (elo < 1000) return ('Gold 1', 'gold')
-  if (elo < 1100) return ('Gold 2', 'gold')
-  if (elo < 1200) return ('Gold 3', 'gold')
-
-  if (elo < 1300) return ('Emerald 1', 'emerald')
-  if (elo < 1400) return ('Emerald 2', 'emerald')
-  if (elo < 1500) return ('Emerald 3', 'emerald')
-
-  if (elo < 1650) return ('Diamond 1', 'diamond')
-  if (elo < 1800) return ('Diamond 2', 'diamond')
-  if (elo < 2000) return ('Diamond 3', 'diamond')
-
-  return ('Netherite', 'netherite')
-}
-
 onUnmounted(() => {
   clearInterval(toggleIntervalID)
+})
+onMounted(() => {
+  statsStore.startAutoUpdate(configStore.nickname)
 })
 </script>
 
@@ -86,20 +67,28 @@ onUnmounted(() => {
       <MinimizedOverlay
         key="minimized-overlay"
         v-if="!configStore.isExpanded"
-        :elo="30"
-        :eloChange="+23"
-        rankIcon="coal"
+        :elo="statsStore.elo"
+        :eloChange="statsStore.eloChange"
+        :rankIcon="statsStore.rankIcon"
       />
 
       <ExpandedOverlay
         key="expanded-overlay"
         v-else
         :nickname="configStore.nickname"
-        :elo="30"
-        rank="Coal"
-        rankIcon="coal"
+        :elo="statsStore.elo"
+        :rank="statsStore.rank"
+        :rankIcon="statsStore.rankIcon"
         :badge="configStore.badge"
         :accent="configStore.accent"
+        :eloChange="statsStore.eloChange"
+        :wins="statsStore.wins"
+        :loses="statsStore.loses"
+        :avg="statsStore.avg"
+        :winrate="statsStore.winrate"
+        :opponentNickname="statsStore.latestMatchNickname"
+        :opponentElo="statsStore.latestMatchElo"
+        :opponentResult="statsStore.latestMatchResult"
       />
     </motion.div>
   </div>

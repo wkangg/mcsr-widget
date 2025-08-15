@@ -6,13 +6,36 @@ import LatestMatch from './LatestMatch.vue'
 import TodayStats from './TodayStats.vue'
 import WinrateBadge from './WinrateBadge.vue'
 
-const { nickname, elo, rank, rankIcon, badge, accent } = defineProps({
+const {
+  nickname,
+  elo,
+  rank,
+  rankIcon,
+  badge,
+  accent,
+  eloChange,
+  wins,
+  loses,
+  avg,
+  winrate,
+  opponentNickname,
+  opponentElo,
+  opponentResult,
+} = defineProps({
   nickname: String,
   elo: Number,
   rank: String,
   rankIcon: String,
   badge: Number,
   accent: String,
+  eloChange: Number,
+  wins: Number,
+  loses: Number,
+  avg: String,
+  winrate: Number,
+  opponentNickname: String,
+  opponentElo: Number,
+  opponentResult: Number,
 })
 
 const configStore = useConfigStore()
@@ -52,7 +75,7 @@ onUnmounted(() => {
         alt="ranked icon"
         class="expanded-info__icon"
       />
-      <WinrateBadge v-if="badge === 2" :percentage="52" :accent="accent" />
+      <WinrateBadge v-if="badge === 2" :percentage="winrate" :accent="accent" />
       <img
         v-if="badge === 3"
         :src="`https://mineskin.eu/helm/${nickname}/100.png`"
@@ -61,8 +84,13 @@ onUnmounted(() => {
       />
     </div>
 
-    <LatestMatch v-if="!configStore.isLatest" />
-    <TodayStats v-else :accent="accent" />
+    <LatestMatch
+      v-if="!configStore.isLatest"
+      :elo="opponentElo"
+      :nickname="opponentNickname"
+      :result="opponentResult"
+    />
+    <TodayStats v-else :accent="accent" :wins="wins" :loses="loses" :elo="eloChange" :avg="avg" />
   </div>
 </template>
 

@@ -1,15 +1,29 @@
+<script setup>
+import { eloChangeFormatter } from '@/lib/eloChangeForametter'
+
+const { elo, nickname, result } = defineProps({
+  elo: Number,
+  nickname: String,
+  result: Number,
+})
+</script>
+
 <template>
   <div class="latest">
     <span class="latest__text">Latest</span>
     <div class="latest-match">
       <div class="latest-match-opponent">
-        <img src="/src/assets/temp/avatar.png" alt="" class="latest-match-opponent__icon" />
+        <img
+          :src="`https://mineskin.eu/helm/${nickname}/100.png`"
+          alt=""
+          class="latest-match-opponent__icon"
+        />
         <div class="latest-match-opponent-info">
-          <span class="latest__text">123 elo</span>
-          <span class="latest-match-opponent-info__nickname">ABCD</span>
+          <span class="latest__text">{{ elo }} elo</span>
+          <span class="latest-match-opponent-info__nickname">{{ nickname }}</span>
         </div>
       </div>
-      <span class="latest-match-opponent__result">+0</span>
+      <span class="latest-match-opponent__result">{{ eloChangeFormatter(result) }}</span>
     </div>
   </div>
 </template>
