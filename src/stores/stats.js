@@ -62,9 +62,9 @@ export const useStatsStore = defineStore('stats', {
             tempLoses += 1
 
             if (match.changes[0].uuid === this.uuid) {
-              tempEloChange += match.changes[1].change
-            } else {
               tempEloChange += match.changes[0].change
+            } else {
+              tempEloChange += match.changes[1].change
             }
           }
         }

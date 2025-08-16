@@ -82,7 +82,7 @@ const isNegative = result < 0
   color: #fff;
   text-align: center;
   font-size: 1rem;
-  font-weight: 510;
+  font-weight: 500;
   line-height: 0.65538rem;
   letter-spacing: -0.01488rem;
 }
@@ -90,7 +90,7 @@ const isNegative = result < 0
   color: #a4a4a9;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 590;
+  font-weight: 600;
   line-height: 0.65538rem;
   letter-spacing: -0.01488rem;
 }

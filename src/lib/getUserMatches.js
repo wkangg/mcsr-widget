@@ -7,7 +7,7 @@ export async function getUserMatches(nickname) {
       params: {
         excludedecay: false,
         type: 2,
-        count: 40,
+        count: 50,
       },
     },
   )

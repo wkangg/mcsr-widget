@@ -1,6 +1,7 @@
 <script setup>
 import ExpandedOverlay from '@/components/ExpandedOverlay.vue'
 import MinimizedOverlay from '@/components/MinimizedOverlay.vue'
+import { preloadImage } from '@/lib/preloadImage'
 import { useConfigStore } from '@/stores/config'
 import { useStatsStore } from '@/stores/stats'
 import { delay, motion, useAnimate } from 'motion-v'
@@ -9,6 +10,8 @@ import { onMounted, onUnmounted } from 'vue'
 const configStore = useConfigStore()
 const statsStore = useStatsStore()
 const [scope, animate] = useAnimate()
+
+preloadImage('src/assets/icons/ranked.png')
 
 const toggleOverlay = () => {
   configStore.isExpanded = !configStore.isExpanded
@@ -30,7 +33,7 @@ const variants = {
   visible: {
     scale: 1,
     height: 48,
-    width: 226,
+    width: 236,
     padding: '0.5rem 1rem',
   },
   extended: {

@@ -36,7 +36,7 @@ const { percentage, accent } = defineProps({
 .winrate__text {
   color: #fff;
   font-size: 0.75rem;
-  font-weight: 510;
+  font-weight: 500;
   line-height: 0.75rem;
   letter-spacing: -0.01488rem;
 }
@@ -77,6 +77,6 @@ const { percentage, accent } = defineProps({
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 0.48531rem;
-  letter-spacing: -0.045rem;
+  letter-spacing: -0.0625rem;
 }
 </style>

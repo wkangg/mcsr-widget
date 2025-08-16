@@ -60,7 +60,7 @@ const isNegative = eloChange < 0
 .miminized-info-rank__text {
   color: #fff;
   font-size: 1.5rem;
-  font-weight: 510;
+  font-weight: 500;
   line-height: 1.5rem;
   letter-spacing: -0.01488rem;
 }
@@ -68,7 +68,7 @@ const isNegative = eloChange < 0
   color: #a4a4a9;
   text-align: center;
   font-size: 1.5rem;
-  font-weight: 590;
+  font-weight: 600;
   line-height: 1.5rem;
   letter-spacing: -0.01488rem;
 }

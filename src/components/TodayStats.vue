@@ -122,7 +122,7 @@ const { accent, wins, loses, elo, avg } = defineProps({
   color: #fff;
   text-align: center;
   font-size: 0.875rem;
-  font-weight: 590;
+  font-weight: 600;
   line-height: 0.875rem;
   letter-spacing: -0.015rem;
 }

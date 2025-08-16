@@ -130,7 +130,7 @@ onUnmounted(() => {
 .expanded-info-stats-rank__text {
   color: #fff;
   font-size: 1.5rem;
-  font-weight: 510;
+  font-weight: 500;
   line-height: 1.5rem;
   letter-spacing: -0.01488rem;
 }
