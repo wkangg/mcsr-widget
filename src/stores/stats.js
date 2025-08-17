@@ -51,7 +51,10 @@ export const useStatsStore = defineStore('stats', {
         ) {
           if (match.result.uuid === this.uuid) {
             tempWins += 1
-            winTimings.push(match.result.time)
+
+            if (!match.forfeited) {
+              winTimings.push(match.result.time)
+            }
 
             if (match.changes[0].uuid === this.uuid) {
               tempEloChange += match.changes[0].change
@@ -59,7 +62,9 @@ export const useStatsStore = defineStore('stats', {
               tempEloChange += match.changes[1].change
             }
           } else {
-            tempLoses += 1
+            if (match.result.uuid !== null) {
+              tempLoses += 1
+            }
 
             if (match.changes[0].uuid === this.uuid) {
               tempEloChange += match.changes[0].change

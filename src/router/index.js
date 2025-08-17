@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   { path: '/widget', component: WidgetPage },
-  { path: '/settings', component: SettingsPage },
+  { path: '/', component: SettingsPage },
 ]
 
 const router = createRouter({

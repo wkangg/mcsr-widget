@@ -9,7 +9,7 @@ const { percentage, accent } = defineProps({
 
 <template>
   <div class="winrate">
-    <span class="winrate__text">Winrate</span>
+    <span class="winrate__text" :style="`color: ${accent}`">Winrate</span>
     <div class="winrate-circle">
       <span class="winrate_percentage" :style="`color: ${accent}`">{{ percentage }}</span>
       <svg
@@ -31,7 +31,7 @@ const { percentage, accent } = defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 .winrate__text {
   color: #fff;
