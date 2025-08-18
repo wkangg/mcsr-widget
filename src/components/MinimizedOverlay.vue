@@ -15,11 +15,7 @@ const isNegative = eloChange < 0
   <div class="minimized">
     <div class="miminized-info">
       <div class="miminized-info-rank">
-        <img
-          :src="`/src/assets/icons/${rankIcon}.png`"
-          alt="rank icon"
-          class="miminized-info-rank__icon"
-        />
+        <img :src="`/icons/${rankIcon}.png`" alt="rank icon" class="miminized-info-rank__icon" />
         <span class="miminized-info-rank__text">{{ elo }} elo</span>
       </div>
       <span

@@ -98,11 +98,7 @@ const exampleData = {
             :class="{ active: selectedBadge === badge.id }"
             @click="selectedBadge = badge.id"
           >
-            <img
-              :src="`/src/assets/icons/${badge.icon}.png`"
-              alt="variant icon"
-              class="variants-item__icon"
-            />
+            <img :src="`/icons/${badge.icon}.png`" alt="variant icon" class="variants-item__icon" />
             <span class="variants-item__label">{{ badge.label }}</span>
           </div>
         </div>
