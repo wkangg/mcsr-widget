@@ -8,14 +8,14 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 
-const nickname = ref('')
+const nickname = ref(localStorage.getItem('nickname') || '')
 
 const badges = [
   { id: 1, label: 'Ranked Icon', icon: 'ranked' },
   { id: 2, label: 'Winrate Badge', icon: 'winrate' },
   { id: 3, label: 'Player Head', icon: 'head' },
 ]
-const selectedBadge = ref(1)
+const selectedBadge = ref(Number(localStorage.getItem('selectedBadge')) || 1)
 
 const accents = [
   { id: 'white', hex: 'FFFFFF' },
@@ -27,14 +27,14 @@ const accents = [
   { id: 'purple', hex: '504BCA' },
   { id: 'pink', hex: 'FF63BA' },
 ]
-const selectedAccent = ref('FFFFFF')
+const selectedAccent = ref(localStorage.getItem('selectedAccent') || 'FFFFFF')
 
 const rates = [
   { id: 1, value: 30 },
   { id: 2, value: 60 },
   { id: 3, value: 90 },
 ]
-const selectedRate = ref(30)
+const selectedRate = ref(Number(localStorage.getItem('selectedRate')) || 30)
 
 const copyWidgetUrl = () => {
   if (!nickname.value) {
@@ -42,10 +42,17 @@ const copyWidgetUrl = () => {
     return
   }
 
-  const widgetUrl = `https://example.com/widget?nickname=${nickname.value}&badge=${selectedBadge.value}&rate=${selectedRate.value}&accent=${selectedAccent.value}`
+  localStorage.setItem('nickname', nickname.value)
+  localStorage.setItem('selectedBadge', selectedBadge.value)
+  localStorage.setItem('selectedAccent', selectedAccent.value)
+  localStorage.setItem('selectedRate', selectedRate.value)
+
+  const widgetUrl = `${import.meta.env.VITE_HOST}/widget?nickname=${nickname.value}&badge=${selectedBadge.value}&rate=${selectedRate.value}&accent=${selectedAccent.value}`
   navigator.clipboard.writeText(widgetUrl)
 
-  toast.success('Link copied to clipboard!')
+  toast.success(
+    'Link copied to clipboard! Set your browser source width to 290px and height to 196px.',
+  )
 }
 
 const exampleData = {
