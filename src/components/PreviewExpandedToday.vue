@@ -26,7 +26,7 @@ const { nickname, elo, rank, rankIcon, badge, accent, winrate, wins, loses, avg,
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            :src="`/src/assets/icons/${rankIcon}.png`"
+            :src="`/icons/${rankIcon}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />
