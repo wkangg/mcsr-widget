@@ -6,7 +6,7 @@ Minimalistic MCSR Ranked widget for OBS that displays your live stats. It tracks
 
 ## Usage
 
-I’ve deployed the widget on my server — just open [ranked.noobweer.ru](ranked.noobweer.ru) and customize your own. Configurator will generate a URL for you to add into OBS.
+I’ve deployed the widget on my server — just open [ranked.noobweer.ru](https://ranked.noobweer.ru)and customize your own. Configurator will generate a URL for you to add into OBS.
 
 <img src="./examples/configurator.png" alt="drawing" width="300"/>
 
