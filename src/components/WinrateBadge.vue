@@ -1,17 +1,32 @@
 <script setup>
-import { defineProps } from 'vue'
+import { animate, RowValue, useMotionValue, useTransform } from 'motion-v'
+import { defineProps, watch } from 'vue'
 
 const { percentage, accent } = defineProps({
   percentage: Number,
   accent: String,
 })
+
+const percentageCounter = useMotionValue(percentage)
+const rounded = useTransform(() => Math.round(percentageCounter.get()))
+
+watch(
+  () => percentage,
+  (newPercentage) => {
+    animate(percentageCounter, Math.abs(newPercentage), {
+      duration: 0.5,
+    })
+  },
+)
 </script>
 
 <template>
   <div class="winrate">
     <span class="winrate__text" :style="`color: ${accent}`">Winrate</span>
     <div class="winrate-circle">
-      <span class="winrate_percentage" :style="`color: ${accent}`">{{ percentage }}</span>
+      <span class="winrate_percentage" :style="`color: ${accent}`"
+        ><RowValue :value="rounded"
+      /></span>
       <svg
         width="26"
         height="26"

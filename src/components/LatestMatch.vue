@@ -1,5 +1,7 @@
 <script setup>
 import { eloChangeFormatter } from '@/lib/eloChangeForametter'
+import { animate, RowValue, useMotionValue, useTransform } from 'motion-v'
+import { watch } from 'vue'
 
 const { elo, nickname, result } = defineProps({
   elo: Number,
@@ -7,8 +9,17 @@ const { elo, nickname, result } = defineProps({
   result: Number,
 })
 
-const isPositive = result > 0
-const isNegative = result < 0
+const resultCounter = useMotionValue(Math.abs(result))
+const rounded = useTransform(() => Math.round(resultCounter.get()))
+
+watch(
+  () => result,
+  (newResult) => {
+    animate(resultCounter, Math.abs(newResult), {
+      duration: 0.5,
+    })
+  },
+)
 </script>
 
 <template>
@@ -29,11 +40,11 @@ const isNegative = result < 0
       <span
         class="latest-match-opponent__result"
         :class="{
-          'latest-match-opponent__result--positive': isPositive,
-          'latest-match-opponent__result--negative': isNegative,
+          'latest-match-opponent__result--positive': result > 0,
+          'latest-match-opponent__result--negative': result < 0,
         }"
-        >{{ eloChangeFormatter(result) }}</span
-      >
+        >{{ eloChangeFormatter(result) }}<RowValue :value="rounded"
+      /></span>
     </div>
   </div>
 </template>

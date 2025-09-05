@@ -49,7 +49,9 @@ const { accent, wins, loses, elo, avg } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Elo</span>
-            <span class="today-stats-values-badge__text">{{ eloChangeFormatter(elo) }}</span>
+            <span class="today-stats-values-badge__text"
+              >{{ eloChangeFormatter(elo) }}{{ Math.abs(elo) }}</span
+            >
           </div>
         </div>
 

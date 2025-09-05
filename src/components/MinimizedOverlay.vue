@@ -1,5 +1,7 @@
 <script setup>
 import { eloChangeFormatter } from '@/lib/eloChangeForametter'
+import { animate, RowValue, useMotionValue, useTransform } from 'motion-v'
+import { watch } from 'vue'
 
 const { elo, rankIcon, eloChange } = defineProps({
   elo: Number,
@@ -7,8 +9,29 @@ const { elo, rankIcon, eloChange } = defineProps({
   eloChange: Number,
 })
 
-const isPositive = eloChange > 0
-const isNegative = eloChange < 0
+const changeCounter = useMotionValue(Math.abs(eloChange))
+const changeRounded = useTransform(() => Math.round(changeCounter.get()))
+
+watch(
+  () => eloChange,
+  (newEloChange) => {
+    animate(changeCounter, Math.abs(newEloChange), {
+      duration: 0.5,
+    })
+  },
+)
+
+const eloCounter = useMotionValue(elo)
+const eloRounded = useTransform(() => Math.round(eloCounter.get()))
+
+watch(
+  () => elo,
+  (newElo) => {
+    animate(eloCounter, newElo, {
+      duration: 0.5,
+    })
+  },
+)
 </script>
 
 <template>
@@ -16,16 +39,16 @@ const isNegative = eloChange < 0
     <div class="miminized-info">
       <div class="miminized-info-rank">
         <img :src="`/icons/${rankIcon}.png`" alt="rank icon" class="miminized-info-rank__icon" />
-        <span class="miminized-info-rank__text">{{ elo }} elo</span>
+        <span class="miminized-info-rank__text"><RowValue :value="eloRounded" /> elo</span>
       </div>
       <span
         class="miminized-info__text"
         :class="{
-          'miminized-info__text--positive': isPositive,
-          'miminized-info__text--negative': isNegative,
+          'miminized-info__text--positive': eloChange > 0,
+          'miminized-info__text--negative': eloChange < 0,
         }"
-        >{{ eloChangeFormatter(eloChange) }}</span
-      >
+        >{{ eloChangeFormatter(eloChange) }}<RowValue :value="changeRounded"
+      /></span>
     </div>
   </div>
 </template>

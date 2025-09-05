@@ -1,8 +1,8 @@
 export const eloChangeFormatter = (eloChange) => {
   if (eloChange > 0) {
-    return `+${eloChange}`
+    return '+'
   } else if (eloChange < 0) {
-    return eloChange.toString()
+    return '-'
   }
-  return '+0'
+  return '+'
 }
