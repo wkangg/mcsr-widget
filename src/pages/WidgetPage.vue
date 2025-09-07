@@ -1,7 +1,6 @@
 <script setup>
 import ExpandedOverlay from '@/components/ExpandedOverlay.vue'
 import MinimizedOverlay from '@/components/MinimizedOverlay.vue'
-import { preloadImage } from '@/lib/preloadImage'
 import { useConfigStore } from '@/stores/config'
 import { useStatsStore } from '@/stores/stats'
 import { delay, motion, useAnimate } from 'motion-v'
@@ -11,13 +10,21 @@ const configStore = useConfigStore()
 const statsStore = useStatsStore()
 const [scope, animate] = useAnimate()
 
-preloadImage('src/assets/icons/ranked.png')
-
 const toggleOverlay = () => {
   configStore.isExpanded = !configStore.isExpanded
 
   if (configStore.isExpanded) {
     delay(() => animate(scope.current, variants.extendedExtra), configStore.rate / 2)
+  }
+}
+
+const toggleExtra = () => {
+  configStore.isExtra = !configStore.isExtra
+
+  if (configStore.isExtra) {
+    animate(scope.current, variants.extendedExtra)
+  } else {
+    animate(scope.current, variants.extended)
   }
 }
 
@@ -48,6 +55,29 @@ const variants = {
     width: 290,
     padding: '1rem 1.5rem',
   },
+}
+
+switch (configStore.state) {
+  case 1:
+    clearInterval(toggleIntervalID)
+    configStore.isExpanded = true
+
+    setInterval(() => toggleExtra(), configStore.rate * 1000)
+    break
+  case 2:
+    clearInterval(toggleIntervalID)
+    break
+  case 3:
+    configStore.isExpanded = true
+    clearInterval(toggleIntervalID)
+    break
+  case 4:
+    configStore.isExpanded = true
+    clearInterval(toggleIntervalID)
+    if (configStore.isExpanded) {
+      delay(() => animate(scope.current, variants.extendedExtra), 0.1)
+    }
+    break
 }
 
 onUnmounted(() => {

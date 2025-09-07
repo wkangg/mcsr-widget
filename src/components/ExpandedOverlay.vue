@@ -49,6 +49,23 @@ const toggleLatest = () => {
 
 const intervalID = setInterval(toggleLatest, (configStore.rate * 1000) / 2 + 20)
 
+switch (configStore.state) {
+  case 1:
+    clearInterval(intervalID)
+    setInterval(() => (configStore.isLatest = !configStore.isLatest), configStore.rate * 1000 + 20)
+    break
+  case 2:
+    clearInterval(intervalID)
+    break
+  case 3:
+    clearInterval(intervalID)
+    break
+  case 4:
+    clearInterval(intervalID)
+    configStore.isLatest = !configStore.isLatest
+    break
+}
+
 onUnmounted(() => {
   clearInterval(intervalID)
 })
