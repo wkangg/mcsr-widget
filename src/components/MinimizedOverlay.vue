@@ -38,7 +38,11 @@ watch(
   <div class="minimized">
     <div class="miminized-info">
       <div class="miminized-info-rank">
-        <img :src="`/icons/${rankIcon}.png`" alt="rank icon" class="miminized-info-rank__icon" />
+        <img
+          :src="`/icons/${rankIcon || 'coal'}.png`"
+          alt="rank icon"
+          class="miminized-info-rank__icon"
+        />
         <span class="miminized-info-rank__text"><RowValue :value="eloRounded" /> elo</span>
       </div>
       <span

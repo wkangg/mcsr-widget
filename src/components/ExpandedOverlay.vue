@@ -79,7 +79,7 @@ onUnmounted(() => {
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            :src="`/icons/${rankIcon}.png`"
+            :src="`/icons/${rankIcon || 'coal'}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />
