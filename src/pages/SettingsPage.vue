@@ -4,6 +4,7 @@ import MinimizedOverlay from '@/components/MinimizedOverlay.vue'
 import PreviewExpandedLatest from '@/components/PreviewExpandedLatest.vue'
 import PreviewExpandedToday from '@/components/PreviewExpandedToday.vue'
 import StyleBadge from '@/components/StyleBadge.vue'
+import { postWidgetCustomizations } from '@/lib/postWidgetCustomizations'
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
@@ -64,6 +65,14 @@ const copyWidgetUrl = () => {
   toast.success(
     'Widget URL copied to clipboard! Set your browser source width to 290px and height to 196px.',
   )
+
+  postWidgetCustomizations({
+    nickname: nickname.value,
+    badge: selectedBadge.value,
+    accent: selectedAccent.value,
+    rate: selectedRate.value,
+    state: selectedStyle.value,
+  })
 }
 
 const exampleData = {
