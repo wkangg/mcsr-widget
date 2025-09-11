@@ -31,11 +31,11 @@ const accents = [
 const selectedAccent = ref(localStorage.getItem('selectedAccent') || 'FFFFFF')
 
 const styles = [
-  { id: 0, label: 'All states', badge: 'anim', desc: 'Minimized, latest match, today stats' },
-  { id: 1, label: '2 states', badge: 'anim', desc: 'Latest match, today stats' },
-  { id: 2, label: 'Minimized', badge: 'stat', desc: '' },
-  { id: 3, label: 'Latest match', badge: 'stat', desc: '' },
-  { id: 4, label: 'Today stats', badge: 'stat', desc: '' },
+  { id: 0, label: 'All states', badge: 'anim', desc: 'Minimized, Latest match, Today stats' },
+  { id: 1, label: '2 states', badge: 'anim', desc: 'Latest match, Today stats' },
+  { id: 2, label: 'Only Elo counter', badge: 'stat', desc: '' },
+  { id: 3, label: 'Only Latest match', badge: 'stat', desc: '' },
+  { id: 4, label: 'Only Today stats', badge: 'stat', desc: '' },
 ]
 
 const selectedStyle = ref(Number(localStorage.getItem('selectedStyle')) || 0)
@@ -92,6 +92,11 @@ const saveAccent = () => {
 }
 const color = ref('#' + (localStorage.getItem('selectedAccent') || 'FFFFFF'))
 const colorInput = ref(null)
+
+const copyDiscord = () => {
+  navigator.clipboard.writeText('noobweer')
+  toast.success('Discord Username copied to clipboard!')
+}
 </script>
 
 <template>
@@ -263,7 +268,24 @@ const colorInput = ref(null)
     </div>
 
     <div class="settings-preview">
-      <span class="settings-parametrs-section__text">Preview</span>
+      <div class="settings-preview-header">
+        <span class="settings-parametrs-section__text">Preview</span>
+
+        <!-- Links -->
+        <div class="settings-preview-header-links">
+          <div class="link-button" @click="copyDiscord">
+            <img src="/icons/discord.svg" alt="" />
+          </div>
+          <a
+            class="link-button"
+            href="https://github.com/noobweer/mcsr-widget"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/icons/github.svg" alt="" />
+          </a>
+        </div>
+      </div>
 
       <div class="preview">
         <div class="preview-widgets">
@@ -338,6 +360,28 @@ const colorInput = ref(null)
   gap: 0.625rem;
   flex: 1 0 0;
   align-self: stretch;
+}
+.settings-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+.settings-preview-header-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.link-button {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.75rem;
+  background: #fff;
+  cursor: pointer;
 }
 .settings-parametrs-section {
   display: flex;
