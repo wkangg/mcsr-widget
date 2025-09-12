@@ -3,10 +3,12 @@ import { eloChangeFormatter } from '@/lib/eloChangeForametter'
 import { animate, RowValue, useMotionValue, useTransform } from 'motion-v'
 import { watch } from 'vue'
 
-const { elo, rankIcon, eloChange } = defineProps({
+const { elo, eloRank, rankIcon, eloChange, leaderboard } = defineProps({
   elo: Number,
+  eloRank: Number,
   rankIcon: String,
   eloChange: Number,
+  leaderboard: Boolean,
 })
 
 const changeCounter = useMotionValue(Math.abs(eloChange))
@@ -35,8 +37,8 @@ watch(
 </script>
 
 <template>
-  <div class="minimized">
-    <div class="miminized-info">
+  <div class="minimized" :class="{ 'minimized-leaderboard': leaderboard }">
+    <div class="miminized-info" :class="{ 'miminized-info-leaderboard': leaderboard }">
       <div class="miminized-info-rank">
         <img
           :src="`/icons/${rankIcon || 'coal'}.png`"
@@ -54,6 +56,11 @@ watch(
         >{{ eloChangeFormatter(eloChange) }}<RowValue :value="changeRounded"
       /></span>
     </div>
+    <div v-if="leaderboard" class="minimized-divider"></div>
+    <div v-if="leaderboard" class="leaderboard-block">
+      <span class="leaderboard-block__hashtag">#</span>
+      <span class="leaderboard-block__position">{{ eloRank }}</span>
+    </div>
   </div>
 </template>
 
@@ -64,10 +71,47 @@ watch(
   align-items: center;
   gap: 1rem;
 }
+.minimized-leaderboard {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0rem;
+}
+.leaderboard-block {
+  display: flex;
+  align-items: flex-end;
+}
+.minimized-divider {
+  width: 0.1875rem;
+  height: 3rem;
+  flex-shrink: 0;
+  background: #18181b;
+}
+.leaderboard-block__hashtag {
+  color: #a4a4a9;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  letter-spacing: -0.01488rem;
+}
+.leaderboard-block__position {
+  color: #a4a4a9;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  letter-spacing: -0.01488rem;
+}
 .miminized-info {
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  align-items: center;
+}
+.miminized-info-leaderboard {
+  display: flex;
+  max-width: 11.75rem;
+  justify-content: space-between;
   align-items: center;
 }
 .miminized-info-rank {

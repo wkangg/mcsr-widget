@@ -14,6 +14,9 @@ export const useConfigStore = defineStore('config', () => {
   const rate = Number(route.query.rate)
   const accent = '#' + route.query.accent
   const state = Number(route.query.state)
+  const leaderboard = route.query.leaderboard === 'true'
+
+  console.log('Leaderboard:', leaderboard)
 
   const isExpanded = ref(false)
   const isExtra = ref(false)
@@ -25,6 +28,7 @@ export const useConfigStore = defineStore('config', () => {
     rate,
     accent,
     state,
+    leaderboard,
     isExpanded,
     isExtra,
     isLatest,

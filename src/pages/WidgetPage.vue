@@ -40,8 +40,8 @@ const variants = {
   visible: {
     scale: 1,
     height: 48,
-    width: 236,
-    padding: '0.5rem 1rem',
+    width: configStore.leaderboard ? 290 : 226,
+    padding: configStore.leaderboard ? '0rem 1rem' : '0.5rem 1rem',
   },
   extended: {
     scale: 1,
@@ -101,8 +101,10 @@ onMounted(() => {
         key="minimized-overlay"
         v-if="!configStore.isExpanded"
         :elo="statsStore.elo"
+        :eloRank="statsStore.eloRank"
         :eloChange="statsStore.eloChange"
         :rankIcon="statsStore.rankIcon"
+        :leaderboard="configStore.leaderboard"
       />
 
       <ExpandedOverlay

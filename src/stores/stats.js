@@ -9,6 +9,7 @@ export const useStatsStore = defineStore('stats', {
   state: () => ({
     uuid: '',
     elo: 0,
+    eloRank: 0,
     eloChange: 0,
     rank: '',
     rankIcon: '',
@@ -26,6 +27,7 @@ export const useStatsStore = defineStore('stats', {
       const userInfo = await getUserInfo(nickname)
 
       this.elo = userInfo.elo
+      this.eloRank = userInfo.eloRank
       this.uuid = userInfo.uuid
 
       this.rank = eloToRank(this.elo)[0]
@@ -40,15 +42,22 @@ export const useStatsStore = defineStore('stats', {
       let tempEloChange = 0
       const winTimings = []
 
+      const currentDate = new Date()
+      const todayUTC = Date.UTC(
+        currentDate.getUTCFullYear(),
+        currentDate.getUTCMonth(),
+        currentDate.getUTCDate(),
+      )
+
       for (const match of userMatches) {
         const matchDate = new Date(match.date * 1000)
-        const currentDate = new Date()
+        const matchDayUTC = Date.UTC(
+          matchDate.getUTCFullYear(),
+          matchDate.getUTCMonth(),
+          matchDate.getUTCDate(),
+        )
 
-        if (
-          matchDate.getDate() === currentDate.getDate() &&
-          matchDate.getMonth() === currentDate.getMonth() &&
-          matchDate.getFullYear() === currentDate.getFullYear()
-        ) {
+        if (matchDayUTC === todayUTC) {
           if (match.result.uuid === this.uuid) {
             tempWins += 1
 
