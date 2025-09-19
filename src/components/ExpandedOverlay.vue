@@ -1,7 +1,7 @@
 <script setup>
 import { useConfigStore } from '@/stores/config'
-import { delay } from 'motion-v'
-import { onUnmounted } from 'vue'
+import { delay, RowValue, animate, useMotionValue, useTransform } from 'motion-v'
+import { onUnmounted, watch } from 'vue'
 import LatestMatch from './LatestMatch.vue'
 import TodayStats from './TodayStats.vue'
 import WinrateBadge from './WinrateBadge.vue'
@@ -9,6 +9,7 @@ import WinrateBadge from './WinrateBadge.vue'
 const {
   nickname,
   elo,
+  eloRank,
   rank,
   rankIcon,
   badge,
@@ -24,6 +25,7 @@ const {
 } = defineProps({
   nickname: String,
   elo: Number,
+  eloRank: Number,
   rank: String,
   rankIcon: String,
   badge: Number,
@@ -66,6 +68,30 @@ switch (configStore.state) {
     break
 }
 
+const eloCounter = useMotionValue(elo)
+const eloRounded = useTransform(() => Math.round(eloCounter.get()))
+
+watch(
+  () => elo,
+  (newElo) => {
+    animate(eloCounter, newElo, {
+      duration: 0.5,
+    })
+  },
+)
+
+const leaderboardCounter = useMotionValue(eloRank)
+const leaderboardRounded = useTransform(() => Math.round(leaderboardCounter.get()))
+
+watch(
+  () => eloRank,
+  (newRank) => {
+    animate(leaderboardCounter, newRank, {
+      duration: 0.5,
+    })
+  },
+)
+
 onUnmounted(() => {
   clearInterval(intervalID)
 })
@@ -75,7 +101,15 @@ onUnmounted(() => {
   <div class="expanded">
     <div class="expanded-info">
       <div class="expanded-info-stats">
-        <span class="expanded-info-stats__text">{{ elo }} elo</span>
+        <!-- Elo + leaderboard values -->
+        <div class="expanded-info-stats-block">
+          <span class="expanded-info-stats__text"><RowValue :value="eloRounded" /> elo</span>
+          <div class="expanded-info-stats-leader expanded-info-stats__text">
+            <span class="expanded-info-stats__hashtag">#</span>
+            <RowValue class="expanded-info-stats__text" :value="leaderboardRounded" />
+          </div>
+        </div>
+
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
@@ -132,11 +166,27 @@ onUnmounted(() => {
   align-items: flex-start;
   gap: 0.25rem;
 }
+.expanded-info-stats-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
 .expanded-info-stats__text {
   color: #a4a4a9;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1rem;
+  letter-spacing: -0.01488rem;
+}
+.expanded-info-stats-leader {
+  display: flex;
+  align-items: flex-end;
+}
+.expanded-info-stats__hashtag {
+  color: #a4a4a9;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 0.875rem;
   letter-spacing: -0.01488rem;
 }
 .expanded-info-stats-rank {

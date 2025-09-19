@@ -4,6 +4,8 @@ import EloIcon from '@/assets/icons/elo.svg'
 import LosesIcon from '@/assets/icons/loses.svg'
 import WinsIcon from '@/assets/icons/wins.svg'
 import { eloChangeFormatter } from '@/lib/eloChangeForametter'
+import { animate, useMotionValue, useTransform, RowValue } from 'motion-v'
+import { watch } from 'vue'
 
 const { accent, wins, loses, elo, avg } = defineProps({
   accent: String,
@@ -12,6 +14,18 @@ const { accent, wins, loses, elo, avg } = defineProps({
   elo: Number,
   avg: String,
 })
+
+const changeCounter = useMotionValue(Math.abs(elo))
+const changeRounded = useTransform(() => Math.round(changeCounter.get()))
+
+watch(
+  () => elo,
+  (newEloChange) => {
+    animate(changeCounter, Math.abs(newEloChange), {
+      duration: 0.5,
+    })
+  },
+)
 </script>
 
 <template>
@@ -26,7 +40,7 @@ const { accent, wins, loses, elo, avg } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Wins</span>
-            <span class="today-stats-values-badge__text">{{ wins }}</span>
+            <span class="today-stats-values-badge__text">{{ wins || 0 }}</span>
           </div>
         </div>
 
@@ -37,7 +51,7 @@ const { accent, wins, loses, elo, avg } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Loses</span>
-            <span class="today-stats-values-badge__text">{{ loses }}</span>
+            <span class="today-stats-values-badge__text">{{ loses || 0 }}</span>
           </div>
         </div>
       </div>
@@ -50,8 +64,8 @@ const { accent, wins, loses, elo, avg } = defineProps({
           <div class="today-stats-values-badge-info">
             <span class="today__text">Elo</span>
             <span class="today-stats-values-badge__text"
-              >{{ eloChangeFormatter(elo) }}{{ Math.abs(elo) }}</span
-            >
+              >{{ eloChangeFormatter(elo) }}<RowValue :value="changeRounded" />
+            </span>
           </div>
         </div>
 
@@ -62,7 +76,7 @@ const { accent, wins, loses, elo, avg } = defineProps({
           </div>
           <div class="today-stats-values-badge-info">
             <span class="today__text">Avg</span>
-            <span class="today-stats-values-badge__text">{{ avg }}</span>
+            <span class="today-stats-values-badge__text">{{ avg || '00:00' }}</span>
           </div>
         </div>
       </div>

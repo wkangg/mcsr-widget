@@ -34,6 +34,18 @@ watch(
     })
   },
 )
+
+const leaderboardCounter = useMotionValue(eloRank)
+const leaderboardRounded = useTransform(() => Math.round(leaderboardCounter.get()))
+
+watch(
+  () => eloRank,
+  (newRank) => {
+    animate(leaderboardCounter, newRank, {
+      duration: 0.5,
+    })
+  },
+)
 </script>
 
 <template>
@@ -59,7 +71,7 @@ watch(
     <div v-if="leaderboard" class="minimized-divider"></div>
     <div v-if="leaderboard" class="leaderboard-block">
       <span class="leaderboard-block__hashtag">#</span>
-      <span class="leaderboard-block__position">{{ eloRank }}</span>
+      <span class="leaderboard-block__position"><RowValue :value="leaderboardRounded" /></span>
     </div>
   </div>
 </template>
@@ -76,10 +88,12 @@ watch(
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  gap: 0rem;
+  gap: 0.25rem;
 }
 .leaderboard-block {
   display: flex;
+  width: 4rem;
+  justify-content: center;
   align-items: flex-end;
 }
 .minimized-divider {
@@ -110,14 +124,14 @@ watch(
 }
 .miminized-info-leaderboard {
   display: flex;
-  max-width: 11.75rem;
+  /* max-width: 11.75rem; */
   justify-content: space-between;
   align-items: center;
 }
 .miminized-info-rank {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.125rem;
 }
 .miminized-info-rank__icon {
   width: 2rem;

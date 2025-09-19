@@ -41,7 +41,7 @@ const variants = {
     scale: 1,
     height: 48,
     width: configStore.leaderboard ? 290 : 226,
-    padding: configStore.leaderboard ? '0rem 1rem' : '0.5rem 1rem',
+    padding: configStore.leaderboard ? '0rem 0.5rem 0rem 0.8rem' : '0.5rem 1rem',
   },
   extended: {
     scale: 1,
@@ -112,6 +112,7 @@ onMounted(() => {
         v-else
         :nickname="configStore.nickname"
         :elo="statsStore.elo"
+        :eloRank="statsStore.eloRank"
         :rank="statsStore.rank"
         :rankIcon="statsStore.rankIcon"
         :badge="configStore.badge"
