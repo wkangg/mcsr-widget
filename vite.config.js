@@ -1,13 +1,16 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import svgLoader from 'vite-svg-loader'
 
+const newLocal = '/'
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueDevTools(), svgLoader()],
+  // publicPath: newLocal,
+  base: process.env.NODE_ENV === 'production' ? '/mcsr-widget/' : '/',
+  transpileDependencies: true,
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
