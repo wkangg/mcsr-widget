@@ -2,6 +2,8 @@
 import LatestMatch from './LatestMatch.vue'
 import WinrateBadge from './WinrateBadge.vue'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const {
   nickname,
   elo,
@@ -35,7 +37,7 @@ const {
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            :src="`${import.meta.env.BASE_URL}icons/${rankIcon}.png`"
+            :src="`${baseUrl}icons/${rankIcon}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />

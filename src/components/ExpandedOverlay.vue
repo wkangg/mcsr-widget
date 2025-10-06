@@ -7,6 +7,8 @@ import TodayStats from './TodayStats.vue'
 import WinrateBadge from './WinrateBadge.vue'
 import { eloChangeFormatter } from '@/lib/eloChangeForametter'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const {
   nickname,
   elo,
@@ -125,7 +127,7 @@ onUnmounted(() => {
 
         <div class="expanded-info-stats-rank">
           <img
-            :src="`${import.meta.env.BASE_URL}icons/${rankIcon || 'coal'}.png`"
+            :src="`${baseUrl}icons/${rankIcon || 'coal'}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />

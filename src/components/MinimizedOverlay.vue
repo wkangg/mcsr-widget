@@ -3,6 +3,8 @@ import { eloChangeFormatter } from '@/lib/eloChangeForametter'
 import { animate, RowValue, useMotionValue, useTransform } from 'motion-v'
 import { watch } from 'vue'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const { elo, eloRank, rankIcon, eloChange, leaderboard } = defineProps({
   elo: Number,
   eloRank: Number,
@@ -53,7 +55,7 @@ watch(
     <div class="miminized-info" :class="{ 'miminized-info-leaderboard': leaderboard }">
       <div class="miminized-info-rank">
         <img
-          :src="`${import.meta.env.BASE_URL}icons/${rankIcon || 'coal'}.png`"
+          :src="`${baseUrl}icons/${rankIcon || 'coal'}.png`"
           alt="rank icon"
           class="miminized-info-rank__icon"
         />
