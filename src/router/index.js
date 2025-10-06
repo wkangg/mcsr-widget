@@ -3,8 +3,8 @@ import WidgetPage from '@/pages/WidgetPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-  { path: '/widget', component: WidgetPage },
-  { path: '/', component: SettingsPage },
+  { path: '/mcsr-widget/widget', component: WidgetPage },
+  { path: '/mcsr-widget/', component: SettingsPage },
 ]
 
 const router = createRouter({
