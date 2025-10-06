@@ -145,7 +145,7 @@ onUnmounted(() => {
 
       <img
         v-if="badge === 1"
-        src="/mcsr-widget/assets/icons/ranked.png"
+        src="/src/assets/icons/ranked.png"
         alt="ranked icon"
         class="expanded-info__icon"
       />

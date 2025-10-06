@@ -644,7 +644,7 @@ const copyDiscord = () => {
   border-radius: 0.5rem;
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(/mcsr-widget/assets/icons/back.jpg) 50% / cover no-repeat;
+    url(/src/assets/icons/back.jpg) 50% / cover no-repeat;
 }
 .preview {
   display: flex;

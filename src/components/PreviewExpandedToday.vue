@@ -35,7 +35,7 @@ const { nickname, elo, rank, rankIcon, badge, accent, winrate, wins, loses, avg,
 
       <img
         v-if="badge === 1"
-        src="/mcsr-widget/assets/icons/ranked.png"
+        src="/src/assets/icons/ranked.png"
         alt="ranked icon"
         class="expanded-info__icon"
       />
