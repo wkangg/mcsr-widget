@@ -39,19 +39,19 @@ const variants = {
   },
   visible: {
     scale: 1,
-    height: 48,
+    height: 78,
     width: configStore.leaderboard ? 290 : 226,
     padding: configStore.leaderboard ? '0rem 0.5rem 0rem 0.8rem' : '0.5rem 1rem',
   },
   extended: {
     scale: 1,
-    height: 164,
+    height: 78,
     width: 290,
     padding: '1rem 1.5rem',
   },
   extendedExtra: {
     scale: 1,
-    height: 196,
+    height: 78,
     width: 290,
     padding: '1rem 1.5rem',
   },
