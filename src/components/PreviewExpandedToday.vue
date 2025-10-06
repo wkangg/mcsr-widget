@@ -26,7 +26,7 @@ const { nickname, elo, rank, rankIcon, badge, accent, winrate, wins, loses, avg,
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            :src="`/icons/${rankIcon}.png`"
+            :src="`/mcsr-widget/icons/${rankIcon}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />
@@ -35,7 +35,7 @@ const { nickname, elo, rank, rankIcon, badge, accent, winrate, wins, loses, avg,
 
       <img
         v-if="badge === 1"
-        src="/src/assets/icons/ranked.png"
+        src="/mcsr-widget/assets/icons/ranked.png"
         alt="ranked icon"
         class="expanded-info__icon"
       />

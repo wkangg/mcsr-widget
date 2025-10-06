@@ -125,7 +125,7 @@ onUnmounted(() => {
 
         <div class="expanded-info-stats-rank">
           <img
-            :src="`/icons/${rankIcon || 'coal'}.png`"
+            :src="`/mcsr-widget/icons/${rankIcon || 'coal'}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />
@@ -145,7 +145,7 @@ onUnmounted(() => {
 
       <img
         v-if="badge === 1"
-        src="/src/assets/icons/ranked.png"
+        src="/mcsr-widget/assets/icons/ranked.png"
         alt="ranked icon"
         class="expanded-info__icon"
       />
