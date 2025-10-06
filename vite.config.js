@@ -6,8 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  publicPath: '/mcsr-widget/',
-  transpileDependencies: true,
+  base: '/mcsr-widget/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
