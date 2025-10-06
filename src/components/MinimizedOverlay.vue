@@ -53,7 +53,7 @@ watch(
     <div class="miminized-info" :class="{ 'miminized-info-leaderboard': leaderboard }">
       <div class="miminized-info-rank">
         <img
-          :src="`/mcsr-widget/icons/${rankIcon || 'coal'}.png`"
+          :src="`/icons/${rankIcon || 'coal'}.png`"
           alt="rank icon"
           class="miminized-info-rank__icon"
         />

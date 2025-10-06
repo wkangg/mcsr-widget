@@ -125,7 +125,7 @@ onUnmounted(() => {
 
         <div class="expanded-info-stats-rank">
           <img
-            :src="`/mcsr-widget/icons/${rankIcon || 'coal'}.png`"
+            :src="`/icons/${rankIcon || 'coal'}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />

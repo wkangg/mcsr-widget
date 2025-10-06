@@ -133,7 +133,7 @@ const copyDiscord = () => {
             :class="{ active: selectedBadge === badge.id }"
             @click="selectedBadge = badge.id"
           >
-            <img :src="`/mcsr-widget/icons/${badge.icon}.png`" alt="variant icon" class="variants-item__icon" />
+            <img :src="`/icons/${badge.icon}.png`" alt="variant icon" class="variants-item__icon" />
             <span class="variants-item__label">{{ badge.label }}</span>
           </div>
         </div>
@@ -148,7 +148,7 @@ const copyDiscord = () => {
             @click="openColorPicker"
             :class="{ active: !accents.some((a) => a.hex === selectedAccent) }"
           >
-            <img src="/mcsr-widget/icons/palette.svg" alt="palette" />
+            <img src="/icons/palette.svg" alt="palette" />
           </div>
           <input
             type="color"
@@ -246,11 +246,11 @@ const copyDiscord = () => {
         <div class="settings-parametrs-rates-container">
           <div class="settings-parametrs-rates-controls">
             <button class="rate-input-button-left" @click="selectedRate -= 5">
-              <img src="/mcsr-widget/icons/minus.svg" alt="" />
+              <img src="/icons/minus.svg" alt="" />
             </button>
             <input class="rate-input" v-model="selectedRate" />
             <button class="rate-input-button-right" @click="selectedRate += 5">
-              <img src="/mcsr-widget/icons/plus.svg" alt="" />
+              <img src="/icons/plus.svg" alt="" />
             </button>
           </div>
 
@@ -283,7 +283,7 @@ const copyDiscord = () => {
         <!-- Links -->
         <div class="settings-preview-header-links">
           <div class="link-button" @click="copyDiscord">
-            <img src="/mcsr-widget/icons/discord.svg" alt="" />
+            <img src="/icons/discord.svg" alt="" />
           </div>
           <a
             class="link-button"
@@ -291,7 +291,7 @@ const copyDiscord = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/mcsr-widget/icons/github.svg" alt="" />
+            <img src="/icons/github.svg" alt="" />
           </a>
         </div>
       </div>
