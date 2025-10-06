@@ -2,8 +2,6 @@
 import { useConfigStore } from '@/stores/config'
 import { delay, RowValue, animate, useMotionValue, useTransform } from 'motion-v'
 import { onUnmounted, watch } from 'vue'
-import LatestMatch from './LatestMatch.vue'
-import TodayStats from './TodayStats.vue'
 import WinrateBadge from './WinrateBadge.vue'
 import { eloChangeFormatter } from '@/lib/eloChangeForametter'
 
@@ -13,18 +11,13 @@ const {
   nickname,
   elo,
   eloRank,
-  rank,
   rankIcon,
   badge,
   accent,
   eloChange,
   wins,
   loses,
-  avg,
   winrate,
-  opponentNickname,
-  opponentElo,
-  opponentResult,
 } = defineProps({
   nickname: String,
   elo: Number,
