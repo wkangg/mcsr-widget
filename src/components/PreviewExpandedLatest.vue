@@ -35,7 +35,7 @@ const {
         <div class="expanded-info-stats-rank">
           <span class="expanded-info-stats-rank__text">{{ rank }}</span>
           <img
-            :src="`/icons/${rankIcon}.png`"
+            :src="`${import.meta.env.BASE_URL}icons/${rankIcon}.png`"
             alt="rank icon"
             class="expanded-info-stats-rank__icon"
           />

@@ -8,7 +8,7 @@ export const useConfigStore = defineStore('config', () => {
 
   const nickname = route.query.nickname
   preloadImage(`https://mineskin.eu/helm/${nickname}/100.png`)
-  preloadImage('/icons/ranked.png')
+  preloadImage(`${import.meta.env.BASE_URL}icons/ranked.png`)
 
   const badge = Number(route.query.badge)
   const rate = Number(route.query.rate)
