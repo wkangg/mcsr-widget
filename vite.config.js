@@ -6,7 +6,6 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // publicPath: newLocal,
   publicPath: process.env.NODE_ENV === 'production' ? '/mcsr-widget/' : '/',
   transpileDependencies: true,
   plugins: [vue(), vueDevTools()],
